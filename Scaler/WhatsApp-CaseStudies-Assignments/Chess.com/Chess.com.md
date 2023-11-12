@@ -1,5 +1,5 @@
 # Problem Description
-Chess.com allows people to play chess with random people, friends & computer opponent. One of the key features of the site is that it allows spectating games. People can follow their favorite players & can tune into their live games as spectators.
+Chess.com allows people to play chess with random people, friends & computer opponent. One of the key features of the site is that it allows spectating games. People can follow their favorite players & can tune into their live games as spectators. People can also spectate live tournaments which chess.com hosts.
 
 I want to focus on this game spectating feature.
 
@@ -7,20 +7,19 @@ I want to focus on this game spectating feature.
 # Functional Requirements / MVP
 
 ### MVP Features
-I think the MVP features are as follows
+I think the MVP v0 features are as follows
 - Create a game
 - Play the game
 	- be able to send commands & board should be updated for both players
 	- order of moves must be maintained
-- Spectate a live game
-- Spectate an older (non-live) game - move-by-move
+- Spectate a game
 
 There are other features like
 - customizing game while creation
 	- time between moves, preset position, etc.
 - Player matching based on rating
 
-which I don't think are really necessary for MVP
+which I don't think are really necessary for MVP and can be added in v1+
 
 ### API's needed
 <u>**createGame()**</u>
@@ -43,7 +42,7 @@ This API is for players to subscribe to the moves happening in the current game 
 
 <u>**spectateGame()**</u>
 ```
-spectateGame(game_id, <options>)
+spectateGame(game_id, <options>): [Moves]
 ```
 This API will return all the moves made in the game. If its called for an older game, all the moves are returned. If its called for a live game, all the moves made so far in the game are returned. For live games, we can make use of `<options>` for paginating moves based on timestamps.
 
@@ -52,7 +51,7 @@ This API will return all the moves made in the game. If its called for an older 
 ### PACELC Theorem
 There can definitely be partitions as this is distributed system - so we have to account for P in our design.
 ##### What does consistency mean here?
-Consistency here means all moves are delivered to opponent player immediately. Eventual consistency means the moves can be delivered out of order or some moves might even not be delivered. So eventual consistency will not work in this case and we need immediate consistency.
+Consistency here means all moves are delivered to opponent player immediately. Eventual consistency means the moves can be delivered out of order or some moves might even not be delivered. So eventual consistency will not work in this case as in chess order of moves matter - thus we need immediate consistency.
 
 Now that we have decided we want Consistency, we can see how low a latency we can get. Low latency is important as players are playing live and lower-latency would mean more smoother gameplay.
 
@@ -77,7 +76,7 @@ Now that we have decided we want Consistency, we can see how low a latency we ca
 - \#size for each user = `100 bytes`
 - \#size for all users = `15 GB`
 
-Users data can be stored on a single machine - **No Sharding**. Not that users data does not include the games they played - this will be stored in other DB.
+Users data can be stored on a single machine - **No Sharding**. Note that users data does not include the games they played - this will be stored in other DB.
 
 #### games
 We can represent a move object like follows
@@ -98,7 +97,7 @@ move can be "E6", "D3", etc -- only 2 characters. On average, a game of chess ca
 | moves       | [moves x50 20bytes]            |
 |             | ~1100        |
 
-On average a user plays 3 games per day. Heavy users might play more but this can be offset by light users.
+On average a user plays 3 games per day. Heavy users might play more but this is offset by light users.
 
 - \#no of games/player/day = `3`
 - \#no of games/day = `3 * 150M` = `300M`
@@ -111,7 +110,7 @@ So chess.com generates `300TB` of data per day. If we assume chess.com has been 
 - size of all games in a year = `10PB * 12months` = `~120PB`
 - size of all games past 10 years = `120PB * 10years` = `1200PB`
 
-This amount of data cannot fit on a single machine - **need Sharding**. I prefer to shard by `gameId` as it promotes even distribution, good cardinality and is usually part of request when calling API's like `sendMove()`, `spectate_()` & `subscribeGame()`
+This amount of data cannot fit on a single machine - **need Sharding**. I prefer to shard by `gameId` as it promotes even distribution, good cardinality and is part of request when calling API's like `sendMove()`, `spectateGame()` & `subscribeGame()`
 
 ### QPS Calculation
 <u>**createGame()**</u>
@@ -135,15 +134,14 @@ This API will be hit quite significantly during peak times. I want to assume out
 Chess.com hosts tournaments among the worlds best players. During such tournaments a lot of players spectate live games and thus the no of calls to `spectateGame()` increase by a lot.
 
 ##### Read/Write/both Heavy
-I think its fair to assume that system is both read & write heavy. Moreover, during peak time (tournaments), the system becomes more read heavy as a lot of people want to spectate games played by the top players. 
+I think its fair to assume that system is both read & write heavy. Moreover, during peak time (tournaments), the system becomes more read heavy as a lot of people want to spectate games played by the top players. We can alleviate the read heavyness by utilizing caches for live spectating games.
 
 # System Design
 #### How will we store the data?
-We are mostly interested in sequence of moves made in a particular game. We want to datastore to be able to store the moves in the order in which they are made. I think Wide Column DB like Cassandra would be a good fit here. We can have a column for moves.
+We are mostly interested in sequence of moves made in a particular game. We want to datastore to be able to store the moves in the order in which they are made. I think Wide Column DB like Cassandra would be a good fit here. We can have a column for moves. When spectating games, we want to get all moves in the order in which they were made (by timestamps) and Cassandra is best for such timestamp ordered queries. And we can return all moves of a game in single API call as on average, there are only about `40-50` moves in a game.
 
 #### How will live spectating work?
-Spectators can establish a 2-way connection with server and the moves can be pushed as notifications as-and-when they happen.
-
-Alternatively, we can have the clients periodically poll the server which can then return the moves from a distributed cache like redis. This will help reduce the amount of servers needed to maintain the 2-way connections. Also its not really important for spectators to see the moves in real-time. There can be some delay for the caches to update which is fine.
+We can have the clients periodically poll the server which can then return the moves from a distributed cache like redis. On average, players take about `1 minutes` to make each move - so we can have a TTL based cache with TTL of 1 minute. Also its not really important for spectators to see the moves in real-time - thus some delay for the caches to update is acceptable.
 
 ![[system_design.svg]]
+

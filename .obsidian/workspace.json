@@ -13,26 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Testing.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "43db890e1e3571b4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
                 "file": "Scaler/WhatsApp-CaseStudies-Assignments/Chess.com/Chess.com.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -169,15 +156,16 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "43db890e1e3571b4",
+  "active": "83c90c26657b4cf8",
   "lastOpenFiles": [
     "CPU Bound vs IO Bound.md",
+    "Scaler/WhatsApp-CaseStudies-Assignments/Chess.com/Chess.com.pdf",
     "Scaler/WhatsApp-CaseStudies-Assignments/Chess.com/Chess.com.md",
+    "Testing.md",
     "Scaler/WhatsApp-CaseStudies-Assignments/Chess.com/Assets/system_design.svg",
     "Scaler/WhatsApp-CaseStudies-Assignments/Chess.com/Assets",
     "Scaler/WhatsApp-CaseStudies-Assignments/Chess.com",
     "Scaler/WhatsApp-CaseStudies-Assignments/Chess.com/Assets/system_design.svg.xml",
-    "Testing.md",
     "Scaler/WhatsApp-CaseStudies-Assignments",
     "Single-Threaded NodeJS vs Multi-Threaded ASP.NET API.md",
     "CPU Bound.md",
