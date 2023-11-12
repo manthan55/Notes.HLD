@@ -1,0 +1,190 @@
+{
+  "main": {
+    "id": "19ffa07fff94bafd",
+    "type": "split",
+    "children": [
+      {
+        "id": "5fe8fabb147ee252",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "83c90c26657b4cf8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Testing.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "43db890e1e3571b4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Scaler/WhatsApp-CaseStudies-Assignments/Chess.com/Chess.com.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7b4797d18f8fe96a",
+    "type": "split",
+    "children": [
+      {
+        "id": "2d95fb9fbbd4cf0f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "38eafd461f0a2852",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "2d9f1eb8c85070d6",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "5282b99b7a55311b",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "729c37063396eb09",
+    "type": "split",
+    "children": [
+      {
+        "id": "8e01be70dbab1a66",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "20506363bd0756b9",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Scaler/WhatsApp-CaseStudies-Assignments/Chess.com/Chess.com.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "abf05d85a5d1cd41",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Scaler/WhatsApp-CaseStudies-Assignments/Chess.com/Chess.com.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "60530248390ff0b0",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "631882fc906e27b0",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Scaler/WhatsApp-CaseStudies-Assignments/Chess.com/Chess.com.md"
+              }
+            }
+          },
+          {
+            "id": "49491bea2055dd53",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
+    }
+  },
+  "active": "43db890e1e3571b4",
+  "lastOpenFiles": [
+    "CPU Bound vs IO Bound.md",
+    "Scaler/WhatsApp-CaseStudies-Assignments/Chess.com/Chess.com.md",
+    "Scaler/WhatsApp-CaseStudies-Assignments/Chess.com/Assets/system_design.svg",
+    "Scaler/WhatsApp-CaseStudies-Assignments/Chess.com/Assets",
+    "Scaler/WhatsApp-CaseStudies-Assignments/Chess.com",
+    "Scaler/WhatsApp-CaseStudies-Assignments/Chess.com/Assets/system_design.svg.xml",
+    "Testing.md",
+    "Scaler/WhatsApp-CaseStudies-Assignments",
+    "Single-Threaded NodeJS vs Multi-Threaded ASP.NET API.md",
+    "CPU Bound.md",
+    "Check this.md",
+    "Scaler/NoSQL - Internals/NoSQL - Internals.md",
+    "Scaler/NoSQL - Internals",
+    "Untitled 1",
+    "Scaler"
+  ]
+}
